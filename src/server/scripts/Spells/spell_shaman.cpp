@@ -202,14 +202,8 @@ public:
 
         bool Validate(SpellEntry const * /*spellEntry*/)
         {
-            if (!sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHBIND_TOTEM))
-                return false;
-            if (!sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHEN_POWER))
-                return false;
-            if (!sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHS_GRASP))
-                return false;
-            if (!sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHGRAB))
-                return false;
+            if (!sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHEN_POWER) || !sSpellStore.LookupEntry(SHAMAN_TOTEM_SPELL_EARTHS_GRASP))
+                 return false;
             return true;
         }
 
@@ -225,9 +219,9 @@ public:
         void HandleEffectApply(AuraEffect const * aurEff, AuraEffectHandleModes /*mode*/)
         {
             Unit* target = GetTarget();
-            if (Unit *caster = aurEff->GetBase()->GetCaster())
-                if (AuraEffect* aur = caster->GetDummyAuraEffect(SPELLFAMILY_SHAMAN, 20, 1))
-                    if (roll_chance_i(aur->GetBaseAmount()))
+            Unit *caster = GetCaster()->GetCharmerOrOwnerPlayerOrPlayerItself();
+                if (AuraEffect* aur = caster->GetAuraEffectOfRankedSpell(SHAMAN_TOTEM_SPELL_EARTHS_GRASP, EFFECT_1))
+                    if (roll_chance_i(aur->GetAmount()))
                        target->CastSpell(target, SHAMAN_TOTEM_SPELL_EARTHGRAB, true, NULL, aurEff);
         }
 
