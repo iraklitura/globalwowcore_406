@@ -1110,7 +1110,7 @@ void Aura::HandleAuraSpecificMods (AuraApplication const* aurApp, Unit* caster, 
                     if (AuraEffect* auraEff = owner->GetDummyAuraEffect(SPELLFAMILY_HUNTER, 2234, 1))
                         GetEffect(0)->SetAmount(auraEff->GetAmount());
             }
-			+            // Improved Serpent Sting	
+            // Improved Serpent Sting	
             if (GetId() == 1978) 	
             {	
                 if (AuraEffect const * aurEff = caster->GetDummyAuraEffect(SPELLFAMILY_HUNTER, 536, 0)) 	
