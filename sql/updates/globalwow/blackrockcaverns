@@ -1,0 +1,12 @@
+Delete from `creature` where `guid` in (15847540, 15847546, 15847537, 15847539, 15847548, 6643758, 15847538, 1051037, 15847536, 15847547, 5543750, 1051165, 1051163, 1051167,15846779, 15846777, 15846778, 1051059, 1051033, 15847535, 1051065, 1051057, 1051035);
+
+Delete from `disables` where `entry` in (76002);
+
+-- spell disable
+INSERT INTO disables (sourceType, entry, flags) VALUES (0, 76002, 2);
+
+Delete from `creature` where `id` in (40004);
+
+-- shadow of Obsidius MODEL ID  HC
+
+UPDATE creature_template SET modelid1="35979" WHERE entry="40818";
